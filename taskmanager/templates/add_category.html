@@ -4,13 +4,22 @@
 <h3 class="light-blue-text text-darken-4 center-align">Add Category</h3>
 
 <div class="row">
-    <form class="col s12">
+    <form class="col s12" action="{{ url_for('add_category') }}" method="POST">
       <div class="row">
-        <div class="input-field col s12 card light-blue-text text-darken-4 orange darken-4">
-          <input id="first_name" type="text" class="validate white-text">
-          <label for="first_name"></label>
+        <div class="input-field col s12 card light-blue-text text-darken-4 orange darken-1">
+          <i class="material-icons prefix white-text">assignment</i>
+          <input id="category_name" name="category_name" type="text" class="validate white-text" style="font-size: 2rem">
+          <label for="category_name">New Category Name</label>
         </div>
       </div>
+      <!-- submit button -->
+      <div class="row">
+        <div class="col s12 center-align">
+            <button type="submit" class="btn-large orange darken-1">
+                <i class="material-icons left">add</i>Add Category
+            </button>
+        </div>
+    </div>
     </form>
   </div>
 {% endblock %}
