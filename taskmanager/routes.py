@@ -10,14 +10,17 @@ def home():
 
 @app.route("/categories")
 def categories():
-    return render_template("categories.html")
+    # convert cursor object returned by query into python list
+    categories = list(Category.query.all())
+    # categories argument in render_template() is variable name passed to template. It
+    # is assigned to value of categories from route
+    return render_template("categories.html", categories=categories)
 
 
 @app.route("/add_category", methods=["GET", "POST"])
 def add_category():
     if request.method == "POST":
         category = Category()
-        #print(request.form.get("category_name"))
         category.category_name = request.form.get("category_name")
         db.session.add(category)
         db.session.commit()
