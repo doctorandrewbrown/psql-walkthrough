@@ -14,10 +14,13 @@
     <div class="col s12 m6 l3">
       <div class="card blue-grey darken-1 center-align">
         <div class="card-content white-text">
-          <span class="card-title">{{ category }}</span>
+          <!--use dot notation to get desired fields (defined in model) from rows 
+            returned by query-->
+          <span class="card-title">{{ category.category_name }}</span>
         </div>
         <div class="card-action">
-          <a href="#" class="btn green accent-4">edit</a>
+          <!--build url in rendered button e.g. edit_category/as seeen in inspector-->
+          <a href="{{ url_for('edit_category', category_id=category.id)}}" class="btn green accent-4">edit</a>
           <a href="#" class="btn red accent-4">delete</a>
         </div>
       </div>
