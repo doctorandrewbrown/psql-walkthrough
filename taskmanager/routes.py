@@ -7,7 +7,7 @@ from taskmanager.models import Category, Task
 def home():
     return render_template("tasks.html")
 
-
+# display categories
 @app.route("/categories")
 def categories():
     # convert cursor object returned by query into python list
