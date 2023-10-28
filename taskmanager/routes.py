@@ -35,10 +35,16 @@ def add_category():
 @app.route("/edit_category/<int:category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
     category = Category.query.get_or_404(category_id)
+    print(request.method)
+    if request.method=="POST":
+        category.category_name=request.form.get("category_name")
+        db.session.add(category)
+        db.session.commit()
+        return redirect(url_for("categories"))
     return render_template("edit_category.html", category=category)
 
 
-@app.route("/delete_category/<int:category_id>", methods=["GET"])
+@app.route("/delete_category/<int:category_id>", methods=["GET"]) # id passed in url
 def delete_category(category_id):
     category = Category.query.get_or_404(category_id)
     db.session.delete(category)
