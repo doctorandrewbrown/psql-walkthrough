@@ -23,6 +23,7 @@ def categories():
 @app.route("/add_category", methods=["GET", "POST"])
 def add_category():
     if request.method == "POST":
+        # create new row in Category table
         category = Category()
         category.category_name = request.form.get("category_name")
         db.session.add(category)
@@ -35,3 +36,11 @@ def add_category():
 def edit_category(category_id):
     category = Category.query.get_or_404(category_id)
     return render_template("edit_category.html", category=category)
+
+
+@app.route("/delete_category/<int:category_id>", methods=["GET"])
+def delete_category(category_id):
+    category = Category.query.get_or_404(category_id)
+    db.session.delete(category)
+    db.session.commit()
+    return redirect(url_for("categories"))
