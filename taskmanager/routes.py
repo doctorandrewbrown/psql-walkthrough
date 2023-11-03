@@ -12,7 +12,7 @@ def home():
 def categories():
     # convert cursor object returned by query into python list
     # NB each element of list represents a row of fields of model
-    #row fields are accessed via dot notation
+    # row fields are accessed via dot notation
     categories = list(Category.query.all())
 
     # categories argument in render_template() is variable name passed to 
@@ -50,3 +50,24 @@ def delete_category(category_id):
     db.session.delete(category)
     db.session.commit()
     return redirect(url_for("categories"))
+
+@app.route("/add_task", methods=["GET", "POST"])
+def add_task():
+    # get all categories to allow selection in new task form
+    categories = list(Category.query.all())
+    if request.method == "POST":
+        # create new row in Task table
+        task = Task()
+        # assign values from form to fields in new Task row (see models.py)
+        task.id = request.form.get("task_id")
+        task.task_name = request.form.get("task_name")
+        task.task_description = request.form.get("task_description")
+        task.is_urgent = True if (request.form.get("is_urgent")) else False
+        task.due_date = request.form.get("due_date")
+        task.category_id = request.form.get("category_id")
+        # commit new row to db
+        db.session.add(task)
+        db.session.commit()
+        return redirect(url_for("home"))
+        # if GET. Return categories to template for dropdown
+    return render_template("add_task.html", categories=categories)
