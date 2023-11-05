@@ -5,7 +5,15 @@ from taskmanager.models import Category, Task
 
 @app.route("/")
 def home():
-    return render_template("tasks.html")
+    # convert cursor object returned by query into python list
+    # NB each element of list represents a row of fields of model
+    # row fields are accessed via dot notation
+    tasks = list(Task.query.all())
+
+    # categories argument in render_template() is variable name passed to 
+    # template. It is assigned to value of categories as defined above
+    return render_template("tasks.html", tasks=tasks)
+
 
 # display categories
 @app.route("/categories")
@@ -71,3 +79,12 @@ def add_task():
         return redirect(url_for("home"))
         # if GET. Return categories to template for dropdown
     return render_template("add_task.html", categories=categories)
+
+@app.route("/edit_task")
+def edit_task():
+    pass
+
+
+@app.route("/delete_task")
+def delete_task():
+    pass
