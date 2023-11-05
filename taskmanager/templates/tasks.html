@@ -2,4 +2,33 @@
 
 {% block content %}
 <h3 class="light-blue-text text-darken-4 center-align">Tasks</h3>
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{url_for('add_task')}}" class="btn-floating btn-large orange darken-1"><i class="material-icons">add</i></a>
+    </div>
+</div>
+<div class="row">
+    {% for task in tasks %}
+    <div class="col s12 m6 white-text">
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header blue-grey darken-1 center-align">
+                    <i class="material-icons">place</i>{{ task.task_name }}
+                </div>
+                <div class="collapsible-body blue-grey darken-1">
+                    <span>{{ task.task_description }}</span>
+                    <div class="blue-grey darken-1 center-align" style="margin-top: 50px;">
+                        <!--build url in rendered button e.g. edit_category/2 for category.id=2-->
+                        <!--could use category.category_name but id safer as unique-->
+                        <a href="{{ url_for('edit_task')}}" class="btn green accent-4">edit</a>
+                        <a href="{{ url_for('delete_task')}}" class="btn red accent-4">delete</a>
+                    </div>
+                </div>
+                
+            </li>
+        </ul>
+        
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

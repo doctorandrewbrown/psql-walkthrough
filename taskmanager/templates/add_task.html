@@ -19,7 +19,8 @@
             <!--form input for task description-->
             <div class="input-field col s12 card light-blue-text text-darken-4 orange darken-1">
                 <i class="material-icons prefix white-text">assignment</i>
-                <textarea class="materialize-textarea validate white-text" id="task_description" 
+                <!--NB rows and columns specified to stop overflow-->
+                <textarea rows="3" cols="2" class="materialize-textarea validate white-text" id="task_description" 
                     name="task_description" type="text"
                     maxlength="200" minlength="5" class="" style="font-size: 2rem" required>
                 </textarea>
@@ -61,7 +62,7 @@
                     <option disabled required></option>
                     {% for category in categories %}
                     <!--note in dropdowns value is used instead of name to grab input data-->
-                    <option value="{{category.id}}">{{category.category_name}}</option>
+                    <option value="{{category.id}}" class="white-text">{{category.category_name}}</option>
                     {% endfor %}
                 </select>
                 <label for="category_id">Choose category:</label>
