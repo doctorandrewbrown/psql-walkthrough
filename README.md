@@ -12,8 +12,5 @@ ctrl+z # exit table list etc
 ```
 ### For the error below restart workspace in gitpod dashboard
 
-```bash
-psql: error: connection to server at "127.0.0.1", port 5432 failed: Connection refused
-        Is the server running on that host and accepting TCP/IP connections?
-```
 
+![operational_error](/readme_screenshots/operationalerror.png)
