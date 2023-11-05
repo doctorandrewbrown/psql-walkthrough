@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="light-blue-text text-darken-4 center-align">Edit Task</h3>
+
+<div class="row">
+  <!--NB when any function like url_for calls the edit_category route the parameters must match
+  the form of the route as defined in routes.py, including any expected data passed in or buildError-->
+    <form class="col s12" action="{{ url_for('edit_task', task_id=task.id) }}" method="POST">
+      <div class="row">
+        <div class="input-field col s12 card light-blue-text text-darken-4 orange darken-1">
+          <i class="material-icons prefix white-text">assignment</i>
+          <input id="task_name" name="task_name" type="text" class="validate white-text" style="font-size: 2rem">
+          <label for="task_name">New Task Name</label>
+        </div>
+      </div>
+      <!-- submit button -->
+      <div class="row">
+        <div class="col s12 center-align">
+            <button type="submit" class="btn-large orange darken-1">
+                <i class="material-icons left">edit</i>Edit Task
+            </button>
+        </div>
+    </div>
+    </form>
+  </div>
+{% endblock %}

@@ -71,7 +71,7 @@ def add_task():
         task.task_name = request.form.get("task_name")
         task.task_description = request.form.get("task_description")
         task.is_urgent = True if (request.form.get("is_urgent")) else False
-        task.due_date = request.form.get("due_date")
+        task.due_date = request.form.get("due_date")@app.route("/edit_task")
         task.category_id = request.form.get("category_id")
         # commit new row to db
         db.session.add(task)
@@ -80,14 +80,20 @@ def add_task():
         # if GET. Return categories to template for dropdown
     return render_template("add_task.html", categories=categories)
 
-@app.route("/edit_task")
-def edit_task():
-    pass
+@app.route("/edit_task/<int:task_id>", methods=["GET", "POST"])
+def edit_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    if request.method=="POST":
+        task.task_name=request.form.get("task_name")
+        db.session.add(task)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("edit_task.html", task=task)
 
-
+# delete task. GET only; no template
 @app.route("/delete_task/<int:task_id>")
 def delete_task(task_id):
-    task = Task.query.get_or_404(56)
+    task = Task.query.get_or_404(task_id)
     db.session.delete(task)
     db.session.commit()
     return redirect(url_for("home"))
