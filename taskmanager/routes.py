@@ -85,6 +85,9 @@ def edit_task():
     pass
 
 
-@app.route("/delete_task")
-def delete_task():
-    pass
+@app.route("/delete_task/<int:task_id>")
+def delete_task(task_id):
+    task = Task.query.get_or_404(56)
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for("home"))

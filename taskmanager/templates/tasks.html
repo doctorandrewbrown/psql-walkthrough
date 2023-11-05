@@ -17,11 +17,11 @@
                 </div>
                 <div class="collapsible-body blue-grey darken-1">
                     <span>{{ task.task_description }}</span>
-                    <div class="blue-grey darken-1 center-align" style="margin-top: 50px;">
+                    <div class="blue-grey darken-1 center-align" style="margin-top:25px;">
                         <!--build url in rendered button e.g. edit_category/2 for category.id=2-->
                         <!--could use category.category_name but id safer as unique-->
                         <a href="{{ url_for('edit_task')}}" class="btn green accent-4">edit</a>
-                        <a href="{{ url_for('delete_task')}}" class="btn red accent-4">delete</a>
+                        <a href="{{ url_for('delete_task', task_id=task.id) }}" class="btn red accent-4">delete</a>
                     </div>
                 </div>
                 
