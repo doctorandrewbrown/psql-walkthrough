@@ -14,6 +14,10 @@
             <li>
                 <div class="collapsible-header blue-grey darken-1 center-align">
                     <i class="material-icons">place</i>{{ task.task_name }}
+                    {% if task.is_urgent==True %}
+                    <i class="material-icons">access_time</i>
+                    {% endif %}
+
                 </div>
                 <div class="collapsible-body blue-grey darken-1">
                     <span>{{ task.task_description }}</span>
